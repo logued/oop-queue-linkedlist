@@ -1,11 +1,12 @@
-package dkit.oop;                   // Feb 2023
+package dkit.oop;                   // Feb 2024
 
 // A Queue is a data structure that permits us to
-// add elements in at one end and remove them from the other end.
+// add elements in at one end (the back) and remove them from the other end (the front).
 // This is known as a First-In First-Out Queue (FIFO)
 //
 // We can use a number of different collection classes to implement a Queue,
-// such as an ArrayList, a LinkedList and so on.
+// such as an ArrayList and LinkedList but the Java documentation
+// recommends the use of and ArrayDeque for speed.
 //
 // We use the Interface type called Queue to describe the set of operations that
 // a Queues should offer. add(), remove(), element() to peek at the next value.
@@ -13,14 +14,14 @@ package dkit.oop;                   // Feb 2023
 // The order of elements in a Queue is normally LIFO. (But other implementations are possible
 // (Priority Queue, Stack(FIFO) )
 //
-// In this sample we choose the LinkedList class as the underlying concrete class.
+// In this sample we choose the ArrayDeque class as the underlying concrete class.
 // This will behave as a FIFO Queue, as elements are added at the tail, but are
-// removed from the head. A LinkedList is a very good structure for a FIFO queue
-// implementation
+// removed from the head.
 //
 // The order of elements in a Queue is chronological - i.e. the order that they
 // were inserted in FIFO - First In, First Out
 
+import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -33,9 +34,16 @@ public class App{
 
     public void start() {
 
-        Queue<Integer> queue = new LinkedList<>();
+        // ArrayDeque implements the Queue interface in the Java Collection Framework.
 
-        // Add elements to the queue
+        Queue<Integer> queue = new ArrayDeque<Integer>();
+
+        // Because our reference is of type Queue, we can only call
+        // methods relevant to a queue - add() , remove(), element()
+        // All three throw Exceptions on failure.
+
+
+        // Add elements to the queue (at the tail)
         queue.add(7); // int types converted to "Integer" types (autoboxing)
         queue.add(11);
         queue.add(13);
@@ -52,9 +60,11 @@ public class App{
         System.out.println("Element removed from head of Queue is: " + element);
         display( queue );
 
-        // We can PEEK or EXAMINE at the next element to be removed from the queue,
-        // That is, we can get the head of queue but NOT remove it from the queue.
-        int head = queue.element(); // queue.peek() will also work
+        // We can PEEK at or EXAMINE the next element at the head of the queue
+        // using the method: element()
+        // That is, we can get access to the head element of the queue
+        // while NOT removing it from the queue.
+        int head = queue.element();     // queue.peek() will also work
         System.out.println("Peek at the head element of queue = " + head);
         display(queue);
 
@@ -64,6 +74,7 @@ public class App{
         // Remove all remaining elements from queue
         System.out.println("Removing all remaining elements from the queue: ");
         System.out.println("Queue is displayed after each element is removed.");
+        display(queue);
         while( !queue.isEmpty() ) {
             Integer value = queue.remove(); // get and remove current head
             display(queue);
@@ -78,39 +89,29 @@ public class App{
         //TODO
         // Q1.
         // Add code to create a second queue "queueNames" to store names. (String)
-        // Populate the queue with 3 names (not in order).
+        // Populate the queue with 3 names (not in alphabetical order).
         // Display all elements in the queue (by calling display() )
-        // Remove two elements from the queue.
+        // Remove two elements from the front/head of the queue.
         // Display all elements.
         // Add 2 more names to the queue.
         // Display all elements
         // Write a while loop to remove() and output all the elements.
 
         //TODO
-        // Q2.
-        // Change the class type of the original concrete queue-implementation class
-        // from LinkedList to ArrayDeque. The program should run as before.
-        // An ArrayDeque is implemented using an array that is "double ended", meaning
-        // elements can be added/removed from both ends.
-        //
-        // In terms of Big-O Time Complexity
-        // Explain the implications of this change to the underlying data structure in terms
-        // of Time Complexity (Big-O) and Space Complexity.
-
-        //TODO
+        // Q.2
         // Create a Student class - name and age fields.
-        // Create a queue using LinkedList implementation for Student objects
+        // Create a queue using ArrayDeque implementation for Student objects
         // and populate it with two new Student objects.
-        // Display all elements using display()
+        // Display all elements using displayStudents() - write the method.
         // Add 2 more Students
         // Write a while loop to remove and display remaining elements
         // after each removal.
     }
 
-    public void display( Queue queue ) {
+    public void display( Queue<Integer> queue ) {
         System.out.print("Queue = head=>");
-        for( Object object : queue ){   // use Object to deal with any type of element
-            System.out.print(object.toString() +"," );
+        for( Integer number : queue ){   //iterate through teh queue
+            System.out.print(number.toString() +"," );
         }
         System.out.println( "<= tail.");
     }
