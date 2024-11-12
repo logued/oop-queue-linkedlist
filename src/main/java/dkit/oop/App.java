@@ -1,4 +1,4 @@
-package dkit.oop;                   // Feb 2024
+package dkit.oop;                   // Nov 2024
 
 // A Queue is a data structure that permits us to
 // add elements in at one end (the back) and remove them from the other end (the front).
@@ -11,8 +11,8 @@ package dkit.oop;                   // Feb 2024
 // We use the Interface type called Queue to describe the set of operations that
 // a Queues should offer. add(), remove(), element() to peek at the next value.
 // So, references of type Queue are normally used to refer to queue implementation classes.
-// The order of elements in a Queue is normally LIFO. (But other implementations are possible
-// (Priority Queue, Stack(FIFO) )
+// The order of elements in a Queue is normally LIFO. But other implementations are possible
+// (Priority Queue, Stack(FIFO)
 //
 // In this sample we choose the ArrayDeque class as the underlying concrete class.
 // This will behave as a FIFO Queue, as elements are added at the tail, but are
@@ -83,12 +83,13 @@ public class App{
         if( queue.isEmpty() )
             System.out.println("The queue is now empty.");
 
-        // If we try to remove an element from an empty queue, an Exception is thrown.  Try uncommenting it.
-        // queue.remove()
+        // If we try to remove an element from an empty queue, an Exception is thrown.
+        // Try uncommenting th eline below, and run the program again.
+         // queue.remove();
 
         //TODO
         // Q1.
-        // Add code to create a second queue "queueNames" to store names. (String)
+        // Add code to create a second queue "queueNames" to store names. (type String)
         // Populate the queue with 3 names (not in alphabetical order).
         // Display all elements in the queue (by calling display() )
         // Remove two elements from the front/head of the queue.
@@ -111,7 +112,7 @@ public class App{
     public void display( Queue<Integer> queue ) {
         System.out.print("Queue = head=>");
         for( Integer number : queue ){   //iterate through teh queue
-            System.out.print(number.toString() +"," );
+            System.out.print(number.toString() + "," );
         }
         System.out.println( "<= tail.");
     }
