@@ -34,9 +34,12 @@ public class App{
 
     public void start() {
 
-        // ArrayDeque implements the Queue interface in the Java Collection Framework.
+        // Implememting a queue using a LinkedList
+        Queue<Integer> queue = new LinkedList<Integer>();
 
-        Queue<Integer> queue = new ArrayDeque<Integer>();
+        // Because ArrayDeque implements the Queue interface in the Java Collection Framework,
+        // we could alternatively implement our queue using an ArrayDeque.
+        //Queue<Integer> queue = new ArrayDeque<Integer>();
 
         // Because our reference is of type Queue, we can only call
         // methods relevant to a queue - add() , remove(), element()
@@ -54,10 +57,11 @@ public class App{
         System.out.println("Contents of Queue:");
         display( queue );
 
+
         // To remove the head of queue. (i.e. the first element entered - FIFO)
         // Here, the first element added was 7, so it should be the first one out.
-        int element = queue.remove();  // return and remove head element
-        System.out.println("Element removed from head of Queue is: " + element);
+        int element = queue.remove();  // return and remove head element (from head of queue)
+        System.out.println("Removing an element from the head of Queue. Element = " + element);
         display( queue );
 
         // We can PEEK at or EXAMINE the next element at the head of the queue
@@ -65,7 +69,7 @@ public class App{
         // That is, we can get access to the head element of the queue
         // while NOT removing it from the queue.
         int head = queue.element();     // queue.peek() will also work
-        System.out.println("Peek at the head element of queue = " + head);
+        System.out.println("Peek at the head element of queue.  Element = " + head);
         display(queue);
 
         int size = queue.size();
@@ -73,11 +77,10 @@ public class App{
 
         // Remove all remaining elements from queue
         System.out.println("Removing all remaining elements from the queue: ");
-        System.out.println("Queue is displayed after each element is removed.");
-        display(queue);
+        System.out.println("The Queue contents is displayed after each element is removed.");
         while( !queue.isEmpty() ) {
-            Integer value = queue.remove(); // get and remove current head
-            display(queue);
+            queue.remove(); // remove current head
+            display(queue);  // display all queue elements each time
         }
 
         if( queue.isEmpty() )
@@ -109,6 +112,13 @@ public class App{
         // after each removal.
     }
 
+    /**
+     * Display all elements from a Queue (from head to tail)
+     * Note that the parameter "queue" is of interface type Queue,
+     * so, this method can accept any collection as long as implements the
+     * Queue interface.
+     * @param queue a Queue structure
+     */
     public void display( Queue<Integer> queue ) {
         System.out.print("Queue = head=>");
         for( Integer number : queue ){   //iterate through teh queue
