@@ -9,10 +9,10 @@ package dkit.oop;                   // Nov 2024
 // recommends the use of and ArrayDeque for speed.
 //
 // We use the Interface type called Queue to describe the set of operations that
-// a Queues should offer. add(), remove(), element() to peek at the next value.
+// a Queues should offer. add(), remove() and element() to peek at the next value.
 // So, references of type Queue are normally used to refer to queue implementation classes.
-// The order of elements in a Queue is normally LIFO. But other implementations are possible
-// (Priority Queue, Stack(FIFO)
+// The order of elements in a Queue is normally FIFO (First-In Firat-Out), but other
+// implementations are possible  (Priority Queue, Stack(LIFO)
 //
 // In this sample we choose the ArrayDeque class as the underlying concrete class.
 // This will behave as a FIFO Queue, as elements are added at the tail, but are
@@ -34,17 +34,19 @@ public class App{
 
     public void start() {
 
-        // Implememting a queue using a LinkedList
-        Queue<Integer> queue = new LinkedList<Integer>();
+        //ArrayDeque implements the Queue interface in the Java Collection Framework,
+        // so, we can implement our queue using an ArrayDeque.
+        Queue<Integer> queue = new ArrayDeque<Integer>();
 
-        // Because ArrayDeque implements the Queue interface in the Java Collection Framework,
-        // we could alternatively implement our queue using an ArrayDeque.
-        //Queue<Integer> queue = new ArrayDeque<Integer>();
+        // Alternatively, we can implement a queue using a LinkedList, as it
+        // also implements the Queue interface.
+        //Queue<Integer> queue = new LinkedList<Integer>();
+
+        // Because
 
         // Because our reference is of type Queue, we can only call
         // methods relevant to a queue - add() , remove(), element()
         // All three throw Exceptions on failure.
-
 
         // Add elements to the queue (at the tail)
         queue.add(7); // int types converted to "Integer" types (autoboxing)
